@@ -1,0 +1,183 @@
+/* Created: 2026-08-10 16:24 */
+/* ===== reset (주어짐) ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ul, li { list-style: none; }
+a { text-decoration: none; color: inherit;  cursor: pointer;}
+body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; color: #333; }
+button{cursor: pointer;}
+
+/* TODO: 여기부터 작성하세요 */
+
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header{
+    height: 70px;
+    border-bottom: 1px solid #e5e5e5;
+
+}
+
+header .inner{
+    display: flex;
+    justify-content: space-between;
+}
+
+header .logo h1{
+    font-size: 20px;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav li{
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.banner {
+    height: 280px;
+    background-color: #2563eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    gap: 10px;
+}
+
+.banner_detail strong {
+    font-size: 28px;
+}
+
+.banner_detail > p {
+    font-size: 14px;
+    opacity: 80%;
+}
+
+.banner_detail >  button {
+    background: #fff;
+    color: #2563eb;
+    padding: 10px 28px;
+    border-radius: 20px;
+    border:0;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.contents{
+    margin: 20px 0;
+}
+
+.product_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product_box > h3{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+.tab_box{
+    width: 100%;
+}
+
+.tab_list{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.tab_list li > button{
+    border: 1px solid #d1d5db;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+.tab_list li > button.active{
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: #1f2937;
+    color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.tab_content_box{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tab_content{
+    flex: 1;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+}
+
+.img_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+    background-color: #f3f4f6;
+    color: #9ca3af;   
+}
+
+.product_detail{
+    padding: 20px;
+}
+
+h3.product_name{
+    font-size: 15px;
+}
+
+.product_price{
+    color: #2563eb;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* JS가 붙이는 숨김 클래스 */
+.tab_content.hidden { display: none; }

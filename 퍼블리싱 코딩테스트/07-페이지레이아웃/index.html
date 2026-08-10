@@ -1,0 +1,144 @@
+<!-- Created: 2026-08-10 16:24 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문제7. 페이지 레이아웃 (시안 구현)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  ============================================
+  [문제 7] 시안 구현 (배점 100점 / 제한 30분)
+  ============================================
+  같은 폴더의 시안.png 를 보고 동일하게 구현하시오.
+  HTML은 이 파일에, CSS는 style.css에, JS는 script.js에 작성.
+
+  [스타일 가이드]
+  - 컨테이너      : 너비 1000px, 화면 가운데 정렬
+  - 헤더          : 높이 70px, 하단 선 1px #e5e5e5
+                    로고 "MY SHOP" 20px / #2563eb (왼쪽 끝)
+                    메뉴 4개: 회사소개·상품·이벤트·고객센터,
+                    14px / #333, 간격 28px (오른쪽 끝), hover 시 #2563eb
+  - 배너          : 높이 280px, 배경 #2563eb, 텍스트 상하좌우 중앙
+                    제목 28px, 설명 14px(투명도 80%),
+                    버튼: 흰 배경 / #2563eb 글자 / padding 10px 28px / 둥근 20px
+  - 인기 상품     : 섹션 제목 20px 중앙
+                    카테고리 탭 3개(전체/의류/신발): 중앙 정렬, 간격 8px,
+                    테두리 1px #d1d5db, 둥근 20px, padding 8px 20px,
+                    선택된 탭은 배경 #2563eb 흰 글자
+                    카드 3개 가로 균등 배치(간격 20px)
+                    카드: 테두리 1px #e5e5e5, 모서리 8px,
+                    썸네일 높이 160px 배경 #f3f4f6 (글자 "IMAGE" 중앙 #9ca3af),
+                    상품명 15px, 가격 16px 굵게 #2563eb, hover 시 그림자
+                    ※ 티셔츠·데님 팬츠 = 의류, 스니커즈 = 신발
+  - 푸터          : 배경 #1f2937, 흰색 60% 글자 13px 중앙, 상하 padding 24px
+
+  [JS 요구사항] — script.js에 작성
+  1) 카테고리 탭 클릭 시 해당 탭만 active(파란 배경) 상태가 된다
+  2) "전체" 클릭 → 카드 3개 모두 표시
+     "의류" 클릭 → 의류 카드 2개만 표시
+     "신발" 클릭 → 신발 카드 1개만 표시
+  3) 페이지 로드 시 기본값은 "전체" 활성화
+  힌트: 버튼과 카드 양쪽에 data-category 속성을 부여하고 값을 비교할 것
+
+  [채점 기준]
+  1) 시맨틱 태그 사용 (header / nav / section / footer)  - 15점
+  2) 시안과 동일한 레이아웃 (flex 활용)                   - 30점
+  3) 색상·크기·간격 가이드 준수                           - 25점
+  4) 카테고리 필터 JS 동작                                - 30점
+-->
+
+<!-- TODO: 여기에 마크업을 작성하세요 -->
+<main>
+	
+		<div class="container">
+			<header>
+				<div class="inner">
+				<div class="logo">
+					<h1>MY SHOP</h1>
+				</div>
+				<ul class="nav">
+					<li ><a>회사소개</a></li>
+					<li ><a>회사소개</a></li>
+					<li ><a>회사소개</a></li>
+					<li ><a>회사소개</a></li>
+				</ul>
+				</div>
+			</header>
+
+			<section class="banner">
+				<div class="banner_detail">
+					<strong>여름 시즌 특가전</strong>
+					<p>최대 70% 할인된 가격으로 만나보세요</p>
+					<button>지금 구경하기</button>
+				</div>
+			</section>
+
+			<section class="contents">
+				<div class="product_box">
+					<h3>인기 상품</h3>
+					<div class="tab_box">
+						<ul class="tab_list">
+							<li  >
+								<button class="tab_btn active" data-category="all">전체</button>
+							</li>
+							<li >
+								<button class="tab_btn" data-category="clothes">의류</button>
+							</li>
+							<li>
+								<button class="tab_btn" data-category="shoes">신발</button>
+							</li>
+						</ul>
+						<ul class="tab_content_box">
+							<li class="tab_content" data-category="clothes">
+								<div class="img_box">IMAGE</div>
+								<div class="product_detail">
+									<h3 class="product_name">베이직 반팔 티셔츠111</h3>
+									<p class="product_price">19,900원</p>	
+								</div>
+							</li>
+							<li class="tab_content" data-category="clothes">
+								<div class="img_box">IMAGE</div>
+								<div class="product_detail">
+									<h3 class="product_name">베이직 반팔 티셔츠</h3>
+									<p class="product_price">19,900원</p>	
+								</div>
+							</li>
+							<li class="tab_content" data-category="shoes">
+								<div class="img_box">IMAGE</div>
+								<div class="product_detail">
+									<h3 class="product_name">베이직 반팔 신발</h3>
+									<p class="product_price">19,900원</p>	
+								</div>
+								
+							</li>
+						</ul>
+							
+				
+						
+					</div>
+					
+
+				</div>
+			</section>
+
+			<footer>
+				<div>@2026 MY SHOP. All rights reserved.</div>
+			</footer>
+
+		</div>
+		
+		
+	
+		
+		
+
+	</header>
+</main>
+
+<script src="./script.js"></script>
+</body>
+</html>
