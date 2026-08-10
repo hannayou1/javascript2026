@@ -1,0 +1,30 @@
+.slider {
+    width: 300px;
+    overflow: hidden;
+}
+
+.slide-list {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s;
+
+}
+
+.slide{
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+}
+
+.slide:nth-child(1){
+    background-color: yellow;
+}
+
+.slide:nth-child(2){
+    background-color: green;
+}
+
+
+.slide:nth-child(3){
+    background-color: purple;
+}

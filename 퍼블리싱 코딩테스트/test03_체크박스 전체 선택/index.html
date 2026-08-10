@@ -1,0 +1,55 @@
+<!-- Created: 2026-08-10 10:46 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>문제3. 체크박스 전체 선택 (오류 수정)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  ============================================
+  [문제 3] 오류 수정 (배점 40점 / 권장 10분)
+  ============================================
+  script.js에 오류가 4곳 있다. 모두 찾아 수정하시오.
+  (HTML/CSS는 수정 금지)
+
+  동작 조건:
+  1) "전체 선택" 클릭 시 하위 체크박스 모두 체크/해제
+  2) 하위 항목을 하나라도 해제하면 "전체 선택"도 해제
+  3) 하위 항목을 모두 체크하면 "전체 선택"도 체크
+-->
+  <label>
+    <input type="checkbox" id="checkAll">
+    <strong>전체 선택</strong>
+  </label>
+
+  <ul>
+    <li>
+      <label >
+        <input type="checkbox" class="chk">
+        항목1
+      </label>
+    </li>
+    
+    <li>
+      <label>
+        <input type="checkbox" class="chk">
+        항목2
+      </label>
+    </li>
+    
+    <li>
+      <label >
+        <input type="checkbox" class="chk">
+        항목3
+      </label>
+    </li>
+  </ul>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

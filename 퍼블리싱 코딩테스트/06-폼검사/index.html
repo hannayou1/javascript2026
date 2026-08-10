@@ -1,0 +1,35 @@
+<!-- Created: 2026-08-10 10:46 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>문제6. 폼 유효성 검사 (오류 수정)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  ============================================
+  [문제 6] 오류 수정 (배점 40점 / 권장 10분)
+  ============================================
+  script.js의 유효성 검사 코드에 오류가 있다. 모두 찾아 수정하시오.
+  (HTML/CSS는 수정 금지)
+
+  동작 조건:
+  1) 이름이 비어 있으면 "이름을 입력하세요." 표시
+  2) 이메일에 @가 없으면 "이메일 형식이 아닙니다." 표시
+  3) 모두 통과했을 때만 "가입 완료" 알림
+  4) 오류가 있으면 폼이 전송되지 않아야 함
+-->
+
+<form id="joinForm">
+  <input type="text" id="userName" placeholder="이름">
+  <p class="err-name"></p>
+  <input type="text" id="userEmail" placeholder="이메일">
+  <p class="err-email"></p>
+  <button type="submit">가입하기</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
