@@ -1,0 +1,7 @@
+/* Created: 2026-08-10 10:46 */
+/* [수정 금지] */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Malgun Gothic', sans-serif; padding: 40px; }
+
+label { display: block; padding: 4px 0; font-size: 14px; cursor: pointer; }
+ul { list-style: none; padding-left: 20px; }

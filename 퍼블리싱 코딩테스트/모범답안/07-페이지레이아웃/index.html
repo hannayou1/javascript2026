@@ -1,0 +1,83 @@
+<!-- Created: 2026-08-10 16:24 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문제7. 페이지 레이아웃 — 모범답안</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  [모범답안 포인트]
+  1) 시맨틱 태그: header / nav / section / footer 구조 (div 남발 시 감점)
+  2) 로고는 h1, 메뉴는 nav > ul > li > a 구조
+  3) 가로 배치는 전부 flex: 헤더(양끝 정렬), GNB(gap), 카드 3개(gap)
+  4) 배너 텍스트 상하좌우 중앙 = flex-direction:column + justify/align center
+  5) 카드 hover 그림자 + transition으로 부드럽게
+-->
+
+<div class="wrap">
+
+  <header class="header">
+    <h1 class="logo"><a href="#">MY SHOP</a></h1>
+    <nav class="gnb">
+      <ul>
+        <li><a href="#">회사소개</a></li>
+        <li><a href="#">상품</a></li>
+        <li><a href="#">이벤트</a></li>
+        <li><a href="#">고객센터</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <h2>여름 시즌 특가전</h2>
+    <p>최대 70% 할인된 가격으로 만나보세요</p>
+    <a href="#" class="btn-banner">지금 구경하기</a>
+  </section>
+
+  <section class="products">
+    <h3>인기 상품</h3>
+
+    <ul class="filter">
+      <li><button type="button" class="filter-btn active" data-category="all">전체</button></li>
+      <li><button type="button" class="filter-btn" data-category="clothes">의류</button></li>
+      <li><button type="button" class="filter-btn" data-category="shoes">신발</button></li>
+    </ul>
+
+    <ul class="card-list">
+      <li class="card" data-category="clothes">
+        <div class="thumb">IMAGE</div>
+        <div class="card-body">
+          <p class="name">베이직 반팔 티셔츠</p>
+          <p class="price">19,900원</p>
+        </div>
+      </li>
+      <li class="card" data-category="clothes">
+        <div class="thumb">IMAGE</div>
+        <div class="card-body">
+          <p class="name">와이드 데님 팬츠</p>
+          <p class="price">39,800원</p>
+        </div>
+      </li>
+      <li class="card" data-category="shoes">
+        <div class="thumb">IMAGE</div>
+        <div class="card-body">
+          <p class="name">캔버스 스니커즈</p>
+          <p class="price">45,000원</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 MY SHOP. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

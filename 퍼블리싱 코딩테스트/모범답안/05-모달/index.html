@@ -1,0 +1,32 @@
+<!-- Created: 2026-08-10 10:46 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>문제5. 모달 팝업 — 모범답안</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  [모범답안 포인트]
+  1) .modal이 dim(배경) 그 자체 — 내용은 반드시 .modal-box로 한 겹 감싸서 안에 배치
+  2) e.target === modal 판정이 핵심: 상자 없이 내용을 .modal 바로 아래 두면
+     내부 클릭에도 닫혀버림 (감점 포인트)
+  3) X 버튼은 modal.querySelector('.btn-close')로 찾으므로 모달 내부에 위치
+  4) "처음에 숨김"은 CSS display:none이 처리 — HTML에 show를 붙이면 오답
+-->
+
+<button type="button" class="btn-open">열기</button>
+
+<div class="modal">
+  <div class="modal-box">
+    <h2>모달 제목</h2>
+    <p>모달 내용입니다. 이 영역을 클릭해도 닫히지 않습니다.</p>
+    <button type="button" class="btn-close">✕</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

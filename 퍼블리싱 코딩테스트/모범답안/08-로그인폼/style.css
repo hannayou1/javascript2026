@@ -1,0 +1,104 @@
+/* Created: 2026-08-10 16:24 */
+/* ===== reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ul, li { list-style: none; }
+a { text-decoration: none; color: inherit; }
+
+/* ===== 화면 정중앙 배치 ===== */
+body {
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;                /* 화면 전체 높이를 기준으로 세로 중앙 */
+}
+
+/* ===== 로그인 카드 ===== */
+.login-box {
+  width: 400px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
+  padding: 40px 32px;
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #1f2937;
+}
+
+/* ===== 인풋 ===== */
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.login-box input[type="text"]:focus,
+.login-box input[type="password"]:focus {
+  outline: none;
+  border-color: #2563eb;            /* outline을 없앴으면 반드시 대체 표시 */
+}
+
+/* 에러 메시지: 평소엔 빈 채로 자리만 차지 → 내용이 생겨도 레이아웃이 안 밀림 */
+.err {
+  min-height: 16px;
+  margin-bottom: 4px;
+  padding-left: 4px;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+/* 화면에서만 숨기는 접근성 클래스 (display:none은 리더기도 못 읽어서 금지) */
+.blind {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ===== 아이디 저장 ===== */
+.save {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* ===== 로그인 버튼 ===== */
+.btn-login {
+  width: 100%;
+  height: 48px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-login:hover { background: #1d4ed8; }
+
+/* ===== 하단 링크 ===== */
+.links {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.links li {
+  padding: 0 12px;
+  border-left: 1px solid #d1d5db;   /* 구분선은 CSS로 */
+}
+.links li:first-child { border-left: 0; }
+.links a { font-size: 13px; color: #888; }
+.links a:hover { color: #2563eb; }

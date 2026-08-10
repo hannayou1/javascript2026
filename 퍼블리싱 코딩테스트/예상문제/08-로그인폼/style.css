@@ -1,0 +1,8 @@
+/* Created: 2026-08-10 16:24 */
+/* ===== reset (주어짐) ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ul, li { list-style: none; }
+a { text-decoration: none; color: inherit; }
+body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; }
+
+/* TODO: 여기부터 작성하세요 */

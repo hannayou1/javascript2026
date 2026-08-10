@@ -1,0 +1,49 @@
+<!-- Created: 2026-08-10 16:24 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문제8. 로그인 폼 — 모범답안</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  [모범답안 포인트]
+  1) 화면 정중앙 배치 = body에 flex + min-height:100vh
+  2) input은 label과 연결 (for ↔ id) — 접근성 채점 포인트
+  3) 텍스트가 없는 label은 .blind 클래스로 화면에서만 숨김 (display:none 금지)
+  4) focus 스타일: outline 제거 시 반드시 대체 표시(border 색) 제공
+  5) 하단 링크 구분선(|)은 HTML에 글자로 넣지 말고 CSS border로
+-->
+
+<main class="login-box">
+  <h1 class="title">LOGIN</h1>
+
+  <form action="#" id="loginForm">
+    <label for="userId" class="blind">아이디</label>
+    <input type="text" id="userId" placeholder="아이디">
+    <p class="err err-id"></p>
+
+    <label for="userPw" class="blind">비밀번호</label>
+    <input type="password" id="userPw" placeholder="비밀번호">
+    <p class="err err-pw"></p>
+
+    <label class="save">
+      <input type="checkbox"> 아이디 저장
+    </label>
+
+    <button type="submit" class="btn-login">로그인</button>
+  </form>
+
+  <ul class="links">
+    <li><a href="#">회원가입</a></li>
+    <li><a href="#">아이디 찾기</a></li>
+    <li><a href="#">비밀번호 찾기</a></li>
+  </ul>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

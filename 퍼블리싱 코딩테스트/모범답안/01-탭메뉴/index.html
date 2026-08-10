@@ -1,0 +1,34 @@
+<!-- Created: 2026-08-10 10:46 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>문제1. 탭 메뉴 — 모범답안</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  [모범답안 포인트]
+  1) 클래스명은 JS 셀렉터와 정확히 일치: tab-btn / tab-content
+  2) this.dataset.tab → 버튼에 data-tab 속성 필요
+  3) getElementById(this.dataset.tab) → data-tab 값 = 컨텐츠 id 일치 (핵심)
+  4) 첫 버튼·첫 컨텐츠에 active 미리 부여
+  5) type="button"으로 form 안 submit 방지 (가산점)
+-->
+
+<div class="tab-wrap">
+  <ul class="tab-menu">
+    <li><button type="button" class="tab-btn active" data-tab="tab1">공지사항</button></li>
+    <li><button type="button" class="tab-btn" data-tab="tab2">이벤트</button></li>
+    <li><button type="button" class="tab-btn" data-tab="tab3">FAQ</button></li>
+  </ul>
+
+  <div id="tab1" class="tab-content active">공지사항 내용입니다.</div>
+  <div id="tab2" class="tab-content">이벤트 내용입니다.</div>
+  <div id="tab3" class="tab-content">FAQ 내용입니다.</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

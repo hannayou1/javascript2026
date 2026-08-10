@@ -1,0 +1,14 @@
+/* Created: 2026-08-10 10:46 */
+/* [수정 금지] */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Malgun Gothic', sans-serif; padding: 40px; }
+
+.btn-open { padding: 8px 18px; border: 0; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; font-size: 14px; }
+
+.modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, .5); }
+.modal.show { display: flex; justify-content: center; align-items: center; }
+
+.modal-box { background: #fff; padding: 20px; width: 300px; border-radius: 10px; position: relative; }
+.modal-box h2 { font-size: 16px; margin-bottom: 8px; }
+.modal-box p { font-size: 14px; }
+.btn-close { position: absolute; top: 10px; right: 12px; border: 0; background: none; cursor: pointer; font-size: 16px; }
