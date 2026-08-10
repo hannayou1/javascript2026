@@ -1,0 +1,739 @@
+<!-- Created: 2026-08-10 10:41 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>퍼블리싱 코딩테스트 연습 (6문제)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #f4f6f8; color: #222; line-height: 1.6; }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
+
+  /* 헤더 + 타이머 */
+  .page-header { position: sticky; top: 0; z-index: 100; background: #1f2937; color: #fff; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .page-header h1 { font-size: 18px; }
+  .timer { display: flex; align-items: center; gap: 8px; }
+  .timer strong { font-size: 22px; font-variant-numeric: tabular-nums; min-width: 76px; text-align: center; }
+  .timer strong.warn { color: #f87171; }
+  .timer button { padding: 6px 12px; border: 0; border-radius: 6px; cursor: pointer; font-size: 13px; background: #4b5563; color: #fff; }
+  .timer button:hover { background: #6b7280; }
+
+  /* 문제 카드 */
+  .quiz { background: #fff; border-radius: 12px; padding: 24px; margin-top: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .quiz h2 { font-size: 17px; padding-bottom: 10px; border-bottom: 2px solid #1f2937; margin-bottom: 6px; }
+  .quiz h2 .badge { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; vertical-align: 2px; color: #fff; }
+  .badge.type-html { background: #2563eb; }
+  .badge.type-blank { background: #059669; }
+  .badge.type-fix { background: #dc2626; }
+  .quiz .meta { font-size: 13px; color: #6b7280; margin-bottom: 12px; }
+  .quiz .desc { background: #eff6ff; border-left: 4px solid #2563eb; padding: 10px 14px; margin: 12px 0; font-size: 14px; border-radius: 0 6px 6px 0; }
+  .quiz h3 { font-size: 14px; margin: 16px 0 6px; color: #374151; }
+
+  pre { background: #1e293b; color: #e2e8f0; padding: 14px 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.55; }
+  pre code { font-family: Consolas, 'Courier New', monospace; }
+  pre .blank { background: #facc15; color: #1e293b; font-weight: bold; padding: 0 4px; border-radius: 3px; }
+  pre .bug { background: #7f1d1d; color: #fecaca; padding: 0 4px; border-radius: 3px; }
+
+  /* 정답 토글 */
+  details.answer { margin-top: 16px; border: 2px solid #059669; border-radius: 8px; overflow: hidden; }
+  details.answer summary { cursor: pointer; background: #059669; color: #fff; padding: 10px 16px; font-weight: bold; font-size: 14px; user-select: none; list-style: none; }
+  details.answer summary::before { content: '🔒 '; }
+  details.answer[open] summary::before { content: '🔓 '; }
+  details.answer .answer-body { padding: 16px; }
+  .answer-body table { border-collapse: collapse; margin: 8px 0; font-size: 14px; }
+  .answer-body th, .answer-body td { border: 1px solid #d1d5db; padding: 6px 14px; }
+  .answer-body th { background: #f3f4f6; }
+  .answer-body td code, .answer-body li code, .desc code { background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-size: 13px; color: #dc2626; }
+  .answer-body ol, .answer-body ul { padding-left: 22px; margin: 8px 0; }
+  .answer-body li { margin: 4px 0; font-size: 14px; }
+
+  /* 데모 공통 */
+  .demo { border: 2px dashed #9ca3af; border-radius: 8px; padding: 16px; margin-top: 12px; background: #fafafa; }
+  .demo-label { font-size: 12px; color: #9ca3af; margin-bottom: 10px; }
+  .demo button { cursor: pointer; }
+
+  /* 데모1: 탭 */
+  #demo1 .d-tabs { display: flex; gap: 4px; }
+  #demo1 .d-tab-btn { padding: 8px 16px; border: 1px solid #d1d5db; border-bottom: 0; background: #f3f4f6; border-radius: 6px 6px 0 0; font-size: 14px; }
+  #demo1 .d-tab-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+  #demo1 .d-tab-content { display: none; border: 1px solid #d1d5db; padding: 14px; background: #fff; font-size: 14px; }
+  #demo1 .d-tab-content.active { display: block; }
+
+  /* 데모2: 아코디언 */
+  #demo2 ul { list-style: none; }
+  #demo2 .d-acc-title { display: block; width: 100%; text-align: left; padding: 10px 14px; border: 1px solid #d1d5db; background: #fff; font-size: 14px; margin-top: -1px; }
+  #demo2 .d-acc-content { display: none; padding: 12px 14px; background: #eef2ff; border: 1px solid #d1d5db; border-top: 0; font-size: 14px; }
+  #demo2 .d-acc-content.on { display: block; }
+
+  /* 데모3: 체크박스 */
+  #demo3 label { display: block; padding: 4px 0; font-size: 14px; }
+  #demo3 ul { list-style: none; padding-left: 20px; }
+
+  /* 데모4: 슬라이더 */
+  #demo4 .d-slider { width: 240px; overflow: hidden; border-radius: 8px; }
+  #demo4 .d-slide-list { display: flex; transition: transform .3s; list-style: none; }
+  #demo4 .d-slide { flex: 0 0 240px; height: 90px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; }
+  #demo4 .d-slide:nth-child(1) { background: #3b82f6; }
+  #demo4 .d-slide:nth-child(2) { background: #10b981; }
+  #demo4 .d-slide:nth-child(3) { background: #f59e0b; }
+  #demo4 .d-ctrl { margin-top: 8px; display: flex; gap: 6px; }
+  #demo4 .d-ctrl button { padding: 6px 14px; border: 1px solid #d1d5db; background: #fff; border-radius: 6px; font-size: 13px; }
+
+  /* 데모5: 모달 */
+  #demo5 .d-btn-open { padding: 8px 18px; border: 0; border-radius: 6px; background: #2563eb; color: #fff; font-size: 14px; }
+  .d-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 200; }
+  .d-modal.show { display: flex; justify-content: center; align-items: center; }
+  .d-modal-box { background: #fff; padding: 24px; width: 300px; border-radius: 10px; position: relative; }
+  .d-modal-box h2 { font-size: 16px; border: 0; margin-bottom: 8px; padding: 0; }
+  .d-modal-box p { font-size: 14px; }
+  .d-btn-close { position: absolute; top: 10px; right: 12px; border: 0; background: none; font-size: 16px; }
+
+  /* 데모6: 폼 */
+  #demo6 input { display: block; width: 260px; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; margin-top: 8px; }
+  #demo6 .d-err { color: #dc2626; font-size: 13px; min-height: 18px; }
+  #demo6 .d-ok { color: #059669; font-size: 14px; font-weight: bold; min-height: 20px; margin-top: 6px; }
+  #demo6 button[type="submit"] { margin-top: 8px; padding: 8px 20px; border: 0; border-radius: 6px; background: #1f2937; color: #fff; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>퍼블리싱 코딩테스트 연습 — 6문제</h1>
+  <div class="timer">
+    <strong id="timerDisp">30:00</strong>
+    <button type="button" id="timerStart">시작</button>
+    <button type="button" id="timerPause">일시정지</button>
+    <button type="button" id="timerReset">리셋</button>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ============ 문제 1 ============ -->
+<section class="quiz">
+  <h2>문제 1. 탭 메뉴 <span class="badge type-html">HTML 작성형</span></h2>
+  <p class="meta">배점 30점 · 권장 시간 8분</p>
+  <p class="desc">다음 JS가 정상 동작하도록 HTML 마크업을 작성하시오.<br>
+  조건: 첫 번째 탭이 기본 활성화 상태, 탭은 총 3개 — "공지사항", "이벤트", "FAQ"</p>
+
+  <h3>주어진 JS</h3>
+  <pre><code>const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    tabBtns.forEach(b =&gt; b.classList.remove('active'));
+    tabContents.forEach(c =&gt; c.classList.remove('active'));
+
+    this.classList.add('active');
+
+    // data-tab 값과 같은 id를 가진 컨텐츠 활성화
+    const target = document.getElementById(this.dataset.tab);
+    target.classList.add('active');
+  });
+});</code></pre>
+
+  <div class="demo" id="demo1">
+    <p class="demo-label">▼ 완성 시 동작 예시 (직접 클릭해보세요)</p>
+    <div class="d-tabs">
+      <button type="button" class="d-tab-btn active" data-tab="t1">공지사항</button>
+      <button type="button" class="d-tab-btn" data-tab="t2">이벤트</button>
+      <button type="button" class="d-tab-btn" data-tab="t3">FAQ</button>
+    </div>
+    <div class="d-tab-content active" data-panel="t1">공지사항 내용입니다.</div>
+    <div class="d-tab-content" data-panel="t2">이벤트 내용입니다.</div>
+    <div class="d-tab-content" data-panel="t3">FAQ 내용입니다.</div>
+  </div>
+
+  <details class="answer">
+    <summary>모범답안 보기</summary>
+    <div class="answer-body">
+      <pre><code>&lt;div class="tab-wrap"&gt;
+  &lt;ul class="tab-menu"&gt;
+    &lt;li&gt;&lt;button type="button" class="tab-btn active" data-tab="tab1"&gt;공지사항&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button type="button" class="tab-btn" data-tab="tab2"&gt;이벤트&lt;/button&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;button type="button" class="tab-btn" data-tab="tab3"&gt;FAQ&lt;/button&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;div id="tab1" class="tab-content active"&gt;공지사항 내용입니다.&lt;/div&gt;
+  &lt;div id="tab2" class="tab-content"&gt;이벤트 내용입니다.&lt;/div&gt;
+  &lt;div id="tab3" class="tab-content"&gt;FAQ 내용입니다.&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <ul>
+        <li>클래스명은 JS 셀렉터와 정확히 일치: <code>tab-btn</code>, <code>tab-content</code></li>
+        <li><code>this.dataset.tab</code> → 버튼에 <code>data-tab</code> 속성 필요</li>
+        <li><code>getElementById(this.dataset.tab)</code> → <strong>data-tab 값 = 컨텐츠 id</strong> 일치 (최다 오답 포인트)</li>
+        <li>첫 버튼·첫 컨텐츠에 <code>active</code> 미리 부여</li>
+        <li><code>type="button"</code>은 가산점 (form 안 submit 방지)</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ============ 문제 2 ============ -->
+<section class="quiz">
+  <h2>문제 2. 아코디언 메뉴 <span class="badge type-blank">빈칸 채우기</span></h2>
+  <p class="meta">배점 30점 · 권장 시간 8분</p>
+  <p class="desc">아코디언이 정상 동작하도록 ①~④ 빈칸을 채우시오.<br>
+  동작: 제목 클릭 시 해당 내용만 열리고, 열린 항목을 다시 클릭하면 닫힘. 한 번에 하나만 열림.</p>
+
+  <h3>주어진 HTML</h3>
+  <pre><code>&lt;ul class="accordion"&gt;
+  &lt;li&gt;
+    &lt;button class="acc-title"&gt;메뉴 1&lt;/button&gt;
+    &lt;div class="acc-content"&gt;내용 1&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;button class="acc-title"&gt;메뉴 2&lt;/button&gt;
+    &lt;div class="acc-content"&gt;내용 2&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;button class="acc-title"&gt;메뉴 3&lt;/button&gt;
+    &lt;div class="acc-content"&gt;내용 3&lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+  <h3>빈칸이 있는 JS</h3>
+  <pre><code>const titles = document.querySelectorAll('.acc-title');
+
+titles.forEach(function (title) {
+  title.addEventListener(<span class="blank">__①__</span>, function () {
+    // 클릭한 제목 바로 다음 형제 요소(내용) 선택
+    const content = this.<span class="blank">__②__</span>;
+    const isOpen = content.classList.contains('on');
+
+    // 모든 내용 닫기
+    document.querySelectorAll('.acc-content').forEach(function (c) {
+      c.classList.<span class="blank">__③__</span>('on');
+    });
+
+    // 닫혀 있던 항목이면 열기 (토글)
+    if (!isOpen) {
+      content.classList.<span class="blank">__④__</span>('on');
+    }
+  });
+});</code></pre>
+
+  <div class="demo" id="demo2">
+    <p class="demo-label">▼ 완성 시 동작 예시 (직접 클릭해보세요)</p>
+    <ul>
+      <li><button type="button" class="d-acc-title">메뉴 1</button><div class="d-acc-content">내용 1</div></li>
+      <li><button type="button" class="d-acc-title">메뉴 2</button><div class="d-acc-content">내용 2</div></li>
+      <li><button type="button" class="d-acc-title">메뉴 3</button><div class="d-acc-content">내용 3</div></li>
+    </ul>
+  </div>
+
+  <details class="answer">
+    <summary>모범답안 보기</summary>
+    <div class="answer-body">
+      <table>
+        <tr><th>빈칸</th><th>정답</th></tr>
+        <tr><td>①</td><td><code>'click'</code></td></tr>
+        <tr><td>②</td><td><code>nextElementSibling</code></td></tr>
+        <tr><td>③</td><td><code>remove</code></td></tr>
+        <tr><td>④</td><td><code>add</code></td></tr>
+      </table>
+      <ul>
+        <li>① 이벤트 이름은 문자열 <code>'click'</code> (<code>'onclick'</code>은 오답)</li>
+        <li>② <code>nextSibling</code>은 공백 텍스트 노드까지 잡히므로 오답 — 단골 함정</li>
+        <li>③ 모든 내용 닫기 → <code>remove('on')</code></li>
+        <li>④ 원래 닫혀 있던 항목만 열기 → <code>add('on')</code> (전체를 먼저 닫았으므로 <code>toggle</code>도 동작은 같음)</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ============ 문제 3 ============ -->
+<section class="quiz">
+  <h2>문제 3. 체크박스 전체 선택 <span class="badge type-fix">오류 수정</span></h2>
+  <p class="meta">배점 40점 · 권장 시간 10분</p>
+  <p class="desc">아래 코드는 "전체 선택" 기능인데 <strong>오류가 4곳</strong> 있다. 모두 찾아 수정하시오.<br>
+  동작: 전체선택 클릭 시 하위 체크박스 모두 체크/해제, 하위를 하나라도 해제하면 전체선택도 해제.</p>
+
+  <h3>주어진 HTML</h3>
+  <pre><code>&lt;label&gt;&lt;input type="checkbox" id="checkAll"&gt; 전체 선택&lt;/label&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;label&gt;&lt;input type="checkbox" class="chk"&gt; 항목 1&lt;/label&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;label&gt;&lt;input type="checkbox" class="chk"&gt; 항목 2&lt;/label&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;label&gt;&lt;input type="checkbox" class="chk"&gt; 항목 3&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+  <h3>오류가 포함된 JS</h3>
+  <pre><code>const checkAll = document.getElementByID('checkAll');
+const checks = document.querySelectorAll('.chk');
+
+checkAll.addEventListener('change', function () {
+  checks.forEach(function (chk) {
+    chk.checked = checkAll.value;
+  });
+});
+
+checks.forEach(function (chk) {
+  chk.addEventListener('change', function () {
+    let allChecked = true;
+    checks.forEach(function (c) {
+      if (c.checked = false) {
+        allChecked = false;
+      }
+    });
+    checkAll.checked = allchecked;
+  });
+});</code></pre>
+
+  <div class="demo" id="demo3">
+    <p class="demo-label">▼ 완성 시 동작 예시 (직접 클릭해보세요)</p>
+    <label><input type="checkbox" class="d-check-all"> <strong>전체 선택</strong></label>
+    <ul>
+      <li><label><input type="checkbox" class="d-chk"> 항목 1</label></li>
+      <li><label><input type="checkbox" class="d-chk"> 항목 2</label></li>
+      <li><label><input type="checkbox" class="d-chk"> 항목 3</label></li>
+    </ul>
+  </div>
+
+  <details class="answer">
+    <summary>모범답안 보기</summary>
+    <div class="answer-body">
+      <pre><code>const checkAll = document.<span class="blank">getElementById</span>('checkAll');   // (1)
+const checks = document.querySelectorAll('.chk');
+
+checkAll.addEventListener('change', function () {
+  checks.forEach(function (chk) {
+    chk.checked = checkAll.<span class="blank">checked</span>;               // (2)
+  });
+});
+
+checks.forEach(function (chk) {
+  chk.addEventListener('change', function () {
+    let allChecked = true;
+    checks.forEach(function (c) {
+      if (c.checked <span class="blank">===</span> false) {                  // (3)
+        allChecked = false;
+      }
+    });
+    checkAll.checked = <span class="blank">allChecked</span>;               // (4)
+  });
+});</code></pre>
+      <ol>
+        <li><code>getElementByID</code> → <code>getElementById</code> — 메서드명 오타(TypeError)</li>
+        <li><code>checkAll.value</code> → <code>checkAll.checked</code> — <code>value</code>는 항상 <code>"on"</code>(truthy)이라 해제가 안 됨</li>
+        <li><code>c.checked = false</code> → <code>c.checked === false</code> — 대입이라 조건문에서 체크를 풀어버림</li>
+        <li><code>allchecked</code> → <code>allChecked</code> — 변수명 대소문자 불일치(ReferenceError)</li>
+      </ol>
+    </div>
+  </details>
+</section>
+
+<!-- ============ 문제 4 ============ -->
+<section class="quiz">
+  <h2>문제 4. 이미지 슬라이더 <span class="badge type-blank">빈칸 채우기</span></h2>
+  <p class="meta">배점 30점 · 권장 시간 8분</p>
+  <p class="desc">이전/다음 버튼으로 슬라이드가 넘어가고, 마지막에서 다음을 누르면 처음으로 순환하도록 ①~④ 빈칸을 채우시오.</p>
+
+  <h3>주어진 HTML / CSS</h3>
+  <pre><code>&lt;div class="slider"&gt;
+  &lt;ul class="slide-list"&gt;
+    &lt;li class="slide"&gt;슬라이드 1&lt;/li&gt;
+    &lt;li class="slide"&gt;슬라이드 2&lt;/li&gt;
+    &lt;li class="slide"&gt;슬라이드 3&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;button type="button" class="btn-prev"&gt;이전&lt;/button&gt;
+  &lt;button type="button" class="btn-next"&gt;다음&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  <pre><code>.slider { width: 300px; overflow: hidden; }
+.slide-list { display: flex; transition: transform 0.3s; }
+.slide { flex: 0 0 300px; }</code></pre>
+
+  <h3>빈칸이 있는 JS</h3>
+  <pre><code>const slideList = document.querySelector('.slide-list');
+const slides = document.querySelectorAll('.slide');
+const btnPrev = document.querySelector('.btn-prev');
+const btnNext = document.querySelector('.btn-next');
+
+let currentIndex = 0;
+const slideWidth = 300;
+
+function moveSlide() {
+  slideList.style.transform = 'translateX(' + (-currentIndex * <span class="blank">__①__</span>) + 'px)';
+}
+
+btnNext.addEventListener('click', function () {
+  currentIndex++;
+  // 마지막 슬라이드를 넘어가면 처음으로
+  if (currentIndex &gt;= <span class="blank">__②__</span>) {
+    currentIndex = 0;
+  }
+  moveSlide();
+});
+
+btnPrev.addEventListener('click', function () {
+  currentIndex--;
+  // 첫 슬라이드에서 이전을 누르면 마지막으로
+  if (currentIndex &lt; 0) {
+    currentIndex = <span class="blank">__③__</span>;
+  }
+  <span class="blank">__④__</span>();
+});</code></pre>
+
+  <div class="demo" id="demo4">
+    <p class="demo-label">▼ 완성 시 동작 예시 (직접 클릭해보세요)</p>
+    <div class="d-slider">
+      <ul class="d-slide-list">
+        <li class="d-slide">슬라이드 1</li>
+        <li class="d-slide">슬라이드 2</li>
+        <li class="d-slide">슬라이드 3</li>
+      </ul>
+    </div>
+    <div class="d-ctrl">
+      <button type="button" class="d-btn-prev">이전</button>
+      <button type="button" class="d-btn-next">다음</button>
+    </div>
+  </div>
+
+  <details class="answer">
+    <summary>모범답안 보기</summary>
+    <div class="answer-body">
+      <table>
+        <tr><th>빈칸</th><th>정답</th></tr>
+        <tr><td>①</td><td><code>slideWidth</code></td></tr>
+        <tr><td>②</td><td><code>slides.length</code></td></tr>
+        <tr><td>③</td><td><code>slides.length - 1</code></td></tr>
+        <tr><td>④</td><td><code>moveSlide</code></td></tr>
+      </table>
+      <ul>
+        <li>① 이동 거리 = 인덱스 × 슬라이드 너비 (<code>300</code>도 정답 처리되는 경우가 많지만 변수 사용이 모범답안)</li>
+        <li>② 인덱스는 0부터 → 3장이면 유효 범위 0~2. <code>slides.length</code>(3) 도달 시 처음으로</li>
+        <li>③ 마지막 인덱스는 <strong>개수 − 1</strong>. <code>slides.length</code>로 쓰면 빈 화면이 나오는 대표 함정</li>
+        <li>④ 인덱스만 바꾸면 화면이 안 움직임 — <code>moveSlide()</code> 호출 필요</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ============ 문제 5 ============ -->
+<section class="quiz">
+  <h2>문제 5. 모달(팝업) 창 <span class="badge type-html">HTML 작성형</span></h2>
+  <p class="meta">배점 30점 · 권장 시간 8분</p>
+  <p class="desc">다음 JS가 정상 동작하도록 HTML을 작성하시오.<br>
+  조건: 모달은 처음에 숨김 상태. "열기" 버튼 → 표시, X 버튼 또는 어두운 배경(dim) 클릭 → 닫힘. <strong>모달 내부 클릭 시에는 닫히지 않아야 함.</strong></p>
+
+  <h3>주어진 JS</h3>
+  <pre><code>const openBtn = document.querySelector('.btn-open');
+const modal = document.querySelector('.modal');
+const closeBtn = modal.querySelector('.btn-close');
+
+openBtn.addEventListener('click', function () {
+  modal.classList.add('show');
+});
+
+closeBtn.addEventListener('click', function () {
+  modal.classList.remove('show');
+});
+
+// dim(배경) 클릭 시 닫기 — 모달 내부 클릭은 제외
+modal.addEventListener('click', function (e) {
+  if (e.target === modal) {
+    modal.classList.remove('show');
+  }
+});</code></pre>
+
+  <h3>주어진 CSS</h3>
+  <pre><code>.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); }
+.modal.show { display: flex; justify-content: center; align-items: center; }
+.modal-box { background: #fff; padding: 20px; width: 300px; }</code></pre>
+
+  <div class="demo" id="demo5">
+    <p class="demo-label">▼ 완성 시 동작 예시 (직접 클릭해보세요 — 배경 클릭으로 닫기 확인)</p>
+    <button type="button" class="d-btn-open">모달 열기</button>
+  </div>
+
+  <details class="answer">
+    <summary>모범답안 보기</summary>
+    <div class="answer-body">
+      <pre><code>&lt;button type="button" class="btn-open"&gt;열기&lt;/button&gt;
+
+&lt;div class="modal"&gt;
+  &lt;div class="modal-box"&gt;
+    &lt;h2&gt;모달 제목&lt;/h2&gt;
+    &lt;p&gt;모달 내용입니다.&lt;/p&gt;
+    &lt;button type="button" class="btn-close"&gt;X&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <ul>
+        <li><code>.modal</code>이 dim(배경) 그 자체 — 내용은 반드시 <code>.modal-box</code>로 한 겹 감싸서 안에 배치</li>
+        <li><code>e.target === modal</code> 판정이 핵심: 상자가 없으면 내부 클릭에도 닫혀버림 (감점 포인트)</li>
+        <li>X 버튼은 <code>modal.querySelector('.btn-close')</code>로 찾으므로 <strong>모달 내부</strong>에 위치</li>
+        <li>"처음에 숨김"은 CSS <code>display: none</code>이 처리 — HTML에 <code>show</code>를 붙이면 오답</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ============ 문제 6 ============ -->
+<section class="quiz">
+  <h2>문제 6. 폼 유효성 검사 <span class="badge type-fix">오류 수정</span></h2>
+  <p class="meta">배점 40점 · 권장 시간 10분</p>
+  <p class="desc">회원가입 폼 유효성 검사 코드에 <strong>오류가 있다</strong>. 모두 찾아 수정하시오.<br>
+  동작: 이름이 비면 경고, 이메일에 @가 없으면 경고, 통과 시에만 "가입 완료". 오류 시 폼 전송 금지.</p>
+
+  <h3>주어진 HTML</h3>
+  <pre><code>&lt;form id="joinForm"&gt;
+  &lt;input type="text" id="userName" placeholder="이름"&gt;
+  &lt;p class="err-name"&gt;&lt;/p&gt;
+  &lt;input type="text" id="userEmail" placeholder="이메일"&gt;
+  &lt;p class="err-email"&gt;&lt;/p&gt;
+  &lt;button type="submit"&gt;가입하기&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+  <h3>오류가 포함된 JS</h3>
+  <pre><code>const form = document.getElementById('joinForm');
+const userName = document.getElementById('userName');
+const userEmail = document.getElementById('userEmail');
+const errName = document.querySelector('.err-name');
+const errEmail = document.querySelector('.err-email');
+
+form.addEventListener('submit', function (e) {
+  errName.textContent = '';
+  errEmail.textContent = '';
+  let isValid = true;
+
+  if (userName.value.trim() === '') {
+    errName.textContent = '이름을 입력하세요.';
+    e.preventDefault;
+    isValid = false;
+  }
+
+  if (userEmail.value.indexOf('@') === -1) {
+    errEmail.innerText() = '이메일 형식이 아닙니다.';
+    e.preventDefault();
+    isValid = false;
+  }
+
+  if (isValid = true) {
+    alert('가입 완료');
+  }
+});</code></pre>
+
+  <div class="demo" id="demo6">
+    <p class="demo-label">▼ 완성 시 동작 예시 (빈 값 / @없는 이메일로 시도해보세요)</p>
+    <form novalidate>
+      <input type="text" class="d-user-name" placeholder="이름">
+      <p class="d-err d-err-name"></p>
+      <input type="text" class="d-user-email" placeholder="이메일">
+      <p class="d-err d-err-email"></p>
+      <button type="submit">가입하기</button>
+      <p class="d-ok"></p>
+    </form>
+  </div>
+
+  <details class="answer">
+    <summary>모범답안 보기</summary>
+    <div class="answer-body">
+      <pre><code>form.addEventListener('submit', function (e) {
+  errName.textContent = '';
+  errEmail.textContent = '';
+  let isValid = true;
+
+  if (userName.value.trim() === '') {
+    errName.textContent = '이름을 입력하세요.';
+    e.preventDefault<span class="blank">()</span>;                          // (1) 괄호 추가
+    isValid = false;
+  }
+
+  if (userEmail.value.indexOf('@') === -1) {
+    errEmail.<span class="blank">textContent =</span> '이메일 형식이 아닙니다.'; // (2)
+    e.preventDefault();
+    isValid = false;
+  }
+
+  if (isValid <span class="blank">===</span> true) {                       // (3)
+    alert('가입 완료');
+  }
+});</code></pre>
+      <ol>
+        <li><code>e.preventDefault;</code> → <code>e.preventDefault();</code> — 괄호가 없으면 참조만 하고 실행 안 됨 → 폼이 그대로 전송. 오류 수정 단골 1순위</li>
+        <li><code>errEmail.innerText() = '...'</code> → <code>errEmail.textContent = '...'</code> — <code>innerText</code>는 속성이지 함수가 아님(TypeError)</li>
+        <li><code>isValid = true</code> → <code>isValid === true</code> — 대입이라 항상 true → 실패해도 "가입 완료"가 뜸 (<code>if (isValid)</code>도 정답)</li>
+        <li>세트 함정: <code>preventDefault()</code>가 <strong>분기마다</strong> 있는지 확인하는 습관이 채점 기준</li>
+      </ol>
+      <p style="font-size:13px;color:#6b7280;margin-top:8px">폼 검사 오류는 거의 항상 ① preventDefault 괄호 누락 ② textContent/innerText/innerHTML 혼동 ③ = vs === ④ trim() 누락/오타 중에서 출제됩니다.</p>
+    </div>
+  </details>
+</section>
+
+</div><!-- /.container -->
+
+<!-- 데모5 모달 (페이지 최상위) -->
+<div class="d-modal">
+  <div class="d-modal-box">
+    <h2>모달 제목</h2>
+    <p>모달 내용입니다. 이 영역을 클릭해도 닫히지 않습니다.</p>
+    <button type="button" class="d-btn-close">✕</button>
+  </div>
+</div>
+
+<script>
+// ===== 30분 타이머 =====
+(function () {
+  const TOTAL = 30 * 60;
+  let remain = TOTAL;
+  let timerId = null;
+  const disp = document.getElementById('timerDisp');
+
+  function render() {
+    const m = String(Math.floor(remain / 60)).padStart(2, '0');
+    const s = String(remain % 60).padStart(2, '0');
+    disp.textContent = m + ':' + s;
+    disp.classList.toggle('warn', remain <= 5 * 60);
+  }
+
+  document.getElementById('timerStart').addEventListener('click', function () {
+    if (timerId) return;
+    timerId = setInterval(function () {
+      remain--;
+      render();
+      if (remain <= 0) {
+        clearInterval(timerId);
+        timerId = null;
+        alert('30분 종료! 수고하셨습니다.');
+      }
+    }, 1000);
+  });
+
+  document.getElementById('timerPause').addEventListener('click', function () {
+    clearInterval(timerId);
+    timerId = null;
+  });
+
+  document.getElementById('timerReset').addEventListener('click', function () {
+    clearInterval(timerId);
+    timerId = null;
+    remain = TOTAL;
+    render();
+  });
+})();
+
+// ===== 데모 1: 탭 =====
+(function () {
+  const wrap = document.getElementById('demo1');
+  const btns = wrap.querySelectorAll('.d-tab-btn');
+  const panels = wrap.querySelectorAll('.d-tab-content');
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      wrap.querySelector('.d-tab-content[data-panel="' + this.dataset.tab + '"]').classList.add('active');
+    });
+  });
+})();
+
+// ===== 데모 2: 아코디언 =====
+(function () {
+  const wrap = document.getElementById('demo2');
+  const titles = wrap.querySelectorAll('.d-acc-title');
+
+  titles.forEach(function (title) {
+    title.addEventListener('click', function () {
+      const content = this.nextElementSibling;
+      const isOpen = content.classList.contains('on');
+      wrap.querySelectorAll('.d-acc-content').forEach(c => c.classList.remove('on'));
+      if (!isOpen) content.classList.add('on');
+    });
+  });
+})();
+
+// ===== 데모 3: 전체 선택 =====
+(function () {
+  const wrap = document.getElementById('demo3');
+  const checkAll = wrap.querySelector('.d-check-all');
+  const checks = wrap.querySelectorAll('.d-chk');
+
+  checkAll.addEventListener('change', function () {
+    checks.forEach(chk => { chk.checked = checkAll.checked; });
+  });
+
+  checks.forEach(function (chk) {
+    chk.addEventListener('change', function () {
+      let allChecked = true;
+      checks.forEach(function (c) {
+        if (c.checked === false) allChecked = false;
+      });
+      checkAll.checked = allChecked;
+    });
+  });
+})();
+
+// ===== 데모 4: 슬라이더 =====
+(function () {
+  const wrap = document.getElementById('demo4');
+  const slideList = wrap.querySelector('.d-slide-list');
+  const slides = wrap.querySelectorAll('.d-slide');
+  let currentIndex = 0;
+  const slideWidth = 240;
+
+  function moveSlide() {
+    slideList.style.transform = 'translateX(' + (-currentIndex * slideWidth) + 'px)';
+  }
+
+  wrap.querySelector('.d-btn-next').addEventListener('click', function () {
+    currentIndex++;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    moveSlide();
+  });
+
+  wrap.querySelector('.d-btn-prev').addEventListener('click', function () {
+    currentIndex--;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    moveSlide();
+  });
+})();
+
+// ===== 데모 5: 모달 =====
+(function () {
+  const openBtn = document.querySelector('#demo5 .d-btn-open');
+  const modal = document.querySelector('.d-modal');
+  const closeBtn = modal.querySelector('.d-btn-close');
+
+  openBtn.addEventListener('click', () => modal.classList.add('show'));
+  closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.classList.remove('show');
+  });
+})();
+
+// ===== 데모 6: 폼 유효성 =====
+(function () {
+  const wrap = document.getElementById('demo6');
+  const form = wrap.querySelector('form');
+  const nameInput = wrap.querySelector('.d-user-name');
+  const emailInput = wrap.querySelector('.d-user-email');
+  const errName = wrap.querySelector('.d-err-name');
+  const errEmail = wrap.querySelector('.d-err-email');
+  const okMsg = wrap.querySelector('.d-ok');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // 데모이므로 항상 전송 차단
+    errName.textContent = '';
+    errEmail.textContent = '';
+    okMsg.textContent = '';
+    let isValid = true;
+
+    if (nameInput.value.trim() === '') {
+      errName.textContent = '이름을 입력하세요.';
+      isValid = false;
+    }
+    if (emailInput.value.indexOf('@') === -1) {
+      errEmail.textContent = '이메일 형식이 아닙니다.';
+      isValid = false;
+    }
+    if (isValid) okMsg.textContent = '✅ 가입 완료';
+  });
+
+  nameInput.addEventListener('input', () => { errName.textContent = ''; });
+})();
+</script>
+
+</body>
+</html>

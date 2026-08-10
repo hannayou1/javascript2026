@@ -1,0 +1,5 @@
+- 클래스명은 JS 셀렉터와 정확히 일치: tab-btn, tab-content
+- this.dataset.tab → 버튼에 data-tab 속성 필요
+- getElementById(this.dataset.tab) → data-tab 값 = 컨텐츠 id 일치 (최다 오답 포인트)
+- 첫 버튼·첫 컨텐츠에 active 미리 부여
+- type="button"은 가산점 (form 안 submit 방지)
