@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메인 비주얼 슬라이더</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <section class="main-visual">
+      <div class="inner">
+        <div class="slider">
+          <ul class="slide-track">
+            <li class="slide slide1">
+              <h2 class="slide-title">여름 휴가 특가</h2>
+              <p class="slide-desc">동남아 리조트 최대 40% 할인</p>
+              <a href="#none" class="btn-more">자세히 보기</a>
+            </li>
+            <li class="slide slide2">
+              <h2 class="slide-title">제주 감성 여행</h2>
+              <p class="slide-desc">항공 + 호텔 패키지 균일가</p>
+              <a href="#none" class="btn-more">자세히 보기</a>
+            </li>
+            <li class="slide slide3">
+              <h2 class="slide-title">허니문 얼리버드</h2>
+              <p class="slide-desc">몰디브 풀빌라 2인 무료 업그레이드</p>
+              <a href="#none" class="btn-more">자세히 보기</a>
+            </li>
+          </ul>
+
+          <button type="button" class="btn-prev" aria-label="이전 슬라이드">&#10094;</button>
+          <button type="button" class="btn-next" aria-label="다음 슬라이드">&#10095;</button>
+
+          <div class="dot-list">
+            <button type="button" class="dot is-active" aria-label="1번 슬라이드"></button>
+            <button type="button" class="dot" aria-label="2번 슬라이드"></button>
+            <button type="button" class="dot" aria-label="3번 슬라이드"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="slider.js"></script>
+</body>
+</html>
