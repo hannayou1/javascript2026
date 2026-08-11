@@ -1,0 +1,12 @@
+/* Created: 2026-08-10 10:46 */
+/* [수정 금지] 완성 시 이 스타일이 그대로 적용되어야 합니다 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Malgun Gothic', sans-serif; padding: 40px; }
+
+.tab-menu { display: flex; gap: 4px; list-style: none; }
+.tab-btn { padding: 8px 16px; border: 1px solid #ccc; border-bottom: 0; background: #f3f3f3; cursor: pointer; font-size: 14px; border-radius: 6px 6px 0 0; }
+.tab-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+.tab-content { display: none; width: 400px; border: 1px solid #ccc; padding: 14px; font-size: 14px; }
+.tab-content.active { display: block; }
+
