@@ -1,3 +1,467 @@
-.hidden {
+/* ==========================================================
+   Momentum — Modern Glassmorphism Dashboard
+   ========================================================== */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-hover: rgba(255, 255, 255, 0.18);
+    --text-main: #ffffff;
+    --text-sub: rgba(255, 255, 255, 0.75);
+    --accent: #a5b4fc;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-pill: 999px;
+    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.25);
+    --blur: blur(16px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit", "Noto Sans KR", sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 100px 24px 140px;
+    overflow-x: hidden;
+}
+
+/* ----- 배경 이미지 (background.js가 body에 추가하는 img) ----- */
+body > img {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    animation: bgZoom 30s ease-in-out infinite alternate;
+}
+
+body > img.loaded {
+    opacity: 1;
+}
+
+/* 배경 위 어두운 그라데이션 오버레이 */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 15, 35, 0.55) 0%,
+        rgba(15, 15, 35, 0.35) 50%,
+        rgba(15, 15, 35, 0.65) 100%
+    );
+    z-index: -1;
+}
+
+@keyframes bgZoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+}
+
+/* ----- 공통 페이드인 ----- */
+#clock,
+#login-form,
+#greeting,
+#todo-form,
+#todo-list,
+#quote,
+#weather {
+    animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- 날짜 ----- */
+#date {
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-indent: 0.35em; /* letter-spacing으로 인한 중앙 쏠림 보정 */
+    color: var(--text-sub);
+    text-transform: uppercase;
+    margin-bottom: -18px;
+    animation: fadeUp 0.9s ease both;
+}
+
+/* ----- 시계 ----- */
+#clock {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(
+        180deg,
+        #ffffff 30%,
+        rgba(255, 255, 255, 0.55) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.4));
+}
+
+/* 콜론 깜빡임 효과를 위한 은은한 펄스 */
+@keyframes clockGlow {
+    0%, 100% { filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.4)); }
+    50%      { filter: drop-shadow(0 6px 36px rgba(165, 180, 252, 0.35)); }
+}
+
+#clock {
+    animation: fadeUp 0.9s ease both, clockGlow 4s ease-in-out infinite;
+}
+
+/* ----- 인사말 ----- */
+#greeting {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 500;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ----- 로그인 폼 ----- */
+#login-form {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    box-shadow: var(--shadow-soft);
+    align-items: center;
+}
+
+#login-form input[type="text"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 12px 20px;
+    width: 240px;
+}
+
+#login-form input[type="text"]::placeholder {
+    color: var(--text-sub);
+}
+
+#login-form input[type="submit"] {
+    background: var(--text-main);
+    color: #1e1e2e;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#login-form input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+}
+
+#login-form a {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding-right: 16px;
+    transition: color 0.2s ease;
+}
+
+#login-form a:hover {
+    color: var(--text-main);
+}
+
+/* ----- 할 일 폼 ----- */
+#todo-form input {
+    width: min(480px, 86vw);
+    padding: 16px 24px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-main);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    box-shadow: var(--shadow-soft);
+    outline: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#todo-form input::placeholder {
+    color: var(--text-sub);
+}
+
+#todo-form input:focus {
+    background: var(--glass-hover);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(165, 180, 252, 0.18), var(--shadow-soft);
+}
+
+/* ----- 할 일 목록 ----- */
+#todo-list {
+    list-style: none;
+    width: min(480px, 86vw);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 할 일이 하나도 없을 때 안내 문구 */
+#todo-list:empty::after {
+    content: "오늘의 할 일을 추가해보세요 ✨";
+    display: block;
+    text-align: center;
+    padding: 18px;
+    font-size: 0.9rem;
+    color: var(--text-sub);
+}
+
+#todo-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px 14px 22px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    overflow: hidden;
+    transition: background 0.25s ease, transform 0.25s ease,
+                box-shadow 0.25s ease, border-color 0.25s ease;
+    animation: fadeUp 0.4s ease both;
+}
+
+/* 왼쪽 그라데이션 액센트 바 */
+#todo-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #a5b4fc, #f0abfc);
+    opacity: 0.7;
+    transition: opacity 0.25s ease, width 0.25s ease;
+}
+
+#todo-list li:hover {
+    background: var(--glass-hover);
+    transform: translateX(6px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+#todo-list li:hover::before {
+    opacity: 1;
+    width: 5px;
+}
+
+#todo-list li span {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+/* 삭제 버튼 — 평소엔 은은하게, 호버 시 붉은 원형 버튼 */
+#todo-list li button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: var(--text-sub);
+    font-size: 0.8rem;
+    font-family: inherit;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s ease;
+}
+
+#todo-list li:hover button {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#todo-list li button:hover {
+    background: rgba(248, 113, 113, 0.25);
+    border-color: rgba(248, 113, 113, 0.5);
+    color: #fca5a5;
+    transform: scale(1.1);
+}
+
+/* ----- 명언 ----- */
+#quote {
+    position: relative;
+    width: min(680px, 90vw);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+    padding: 28px 32px 8px;
+}
+
+/* 장식용 큰따옴표 */
+#quote::before {
+    content: "\201C";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Georgia, "Noto Serif KR", serif;
+    font-size: 5rem;
+    line-height: 1;
+    background: linear-gradient(135deg, #c7d2fe, #f0abfc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+#quote span:first-child {
+    font-family: "Noto Serif KR", serif;
+    font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+
+#quote span:last-child {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--text-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* 저자 이름 양옆의 가는 라인 */
+#quote span:last-child:not(:empty)::before,
+#quote span:last-child:not(:empty)::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45));
+}
+
+#quote span:last-child:not(:empty)::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent);
+}
+
+/* ----- 날씨 ----- */
+#weather {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px 10px 12px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    box-shadow: var(--shadow-soft);
+    transition: background 0.2s ease;
+}
+
+#weather:hover {
+    background: var(--glass-hover);
+}
+
+#weather img {
+    width: 56px;
+    height: 56px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* 아이콘이 로드되기 전엔 숨김 (깨진 이미지 방지) */
+#weather img:not([src]) {
     display: none;
+}
+
+#weather .weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#weather span:first-child {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+#weather span:last-child {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+}
+
+/* ----- 숨김 처리 (JS 토글용 — 반드시 최우선) ----- */
+.hidden {
+    display: none !important;
+}
+
+/* ----- 모바일 ----- */
+@media (max-width: 600px) {
+    body {
+        padding: 80px 16px 120px;
+    }
+
+    #weather {
+        top: 16px;
+        right: 16px;
+        padding: 10px 16px;
+    }
+
+    #login-form {
+        flex-direction: column;
+        border-radius: var(--radius-lg);
+        width: min(480px, 86vw);
+    }
+
+    #login-form input[type="text"] {
+        width: 100%;
+        text-align: center;
+    }
+
+    #login-form input[type="submit"] {
+        width: 100%;
+    }
 }

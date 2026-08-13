@@ -1,4 +1,5 @@
 const clock = document.querySelector("h2#clock");
+const dateEl = document.querySelector("#date");
 
 clock.innerText = "00:00:00";
 
@@ -9,6 +10,11 @@ function getClock() {
     const seconds = String(date.getSeconds()).padStart(2, "0");
 
     clock.innerText = `${hours}:${minutes}:${seconds}`;
+    dateEl.innerText = date.toLocaleDateString("ko-KR", {
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+    });
 }
 
 getClock();

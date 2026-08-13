@@ -1,39 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_new.css">
-    <title>Momentum App</title>
+    <title>모멘텀 — 나의 하루</title>
 </head>
 <body>
+    <p id="date"></p>
     <h2 id="clock">00:00:00</h2>
+
+    <div id="quote">
+        <span></span>
+        <span></span>
+    </div>
+
     <form id="login-form" class="hidden">
         <input 
             required 
             maxLength="15" 
             type="text" 
-            placeholder="what is your name?" 
-    
+            placeholder="이름이 무엇인가요?"
+
             />
-        <input type="submit" value="Login"/>
- 
-        <a href="https://www.google.com">Google</a>
+        <input type="submit" value="시작하기"/>
+
+        <a href="https://www.google.com">구글</a>
     </form>
 
     <h1 id="greeting" class="hidden"></h1>
 
     <form id="todo-form">
-        <input type="text" placeholder="Write a to do and press Enter" />
+        <input type="text" placeholder="할 일을 입력하고 Enter를 누르세요" />
     </form>
 
     <ul id="todo-list">
        
     </ul>
 
-    <div id="quote">
-        <span></span>
-        <span></span>
+    <div id="weather">
+        <img alt="weather icon" />
+        <div class="weather-info">
+            <span></span>
+            <span></span>
+        </div>
     </div>
     
    
@@ -42,5 +55,6 @@
     <script src="quotes.js"></script>
     <script src="background.js"></script>
     <script src="todo.js"></script>
+    <script src="weather.js"></script>
 </body>
 </html>
