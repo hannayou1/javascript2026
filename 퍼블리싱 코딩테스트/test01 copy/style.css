@@ -1,0 +1,33 @@
+ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tab_menu{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tab-btn{
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    border-bottom: 0;
+}
+
+.tab-btn.active{
+    background-color: turquoise;
+    border-color: turquoise;
+}
+
+.tab-content{
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: none;
+}
+
+.tab-content.active{
+    display: block;
+}

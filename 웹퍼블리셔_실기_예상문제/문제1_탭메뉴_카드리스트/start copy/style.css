@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/* 여기에 스타일 작성 */
+h1,h2, h3,p{
+    margin: 0;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    list-style: none;
+}
+
+.section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.inner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.section_header{
+    text-align: center;
+    padding: 20px;
+}
+
+.section_header h2{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    
+}
+
+.section_header p{
+    font-size: 16px;
+    color: #888;
+}
+
+.tab-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.tab-list .tab-btn {
+    padding: 7px 18px;
+    border-radius: 80px; 
+    background-color: #fff;
+    color:#333;
+    border: 1px solid #ccc;   
+    cursor: pointer;
+
+}
+
+.tab-list .tab-btn.is-active {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;   
+}
+.tab-panel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.tab-panel.is-active{
+    display: flex;
+}
+
+.tab-panel .product_list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.product_item{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc(25% - 20px);
+    min-width:0;
+}
+
+.product_item a {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.product_item .product_image{
+    min-height: 240px;
+    border:1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+.product_item .product_name{
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 400;
+    color:#333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product_item .product_price{
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: 700;
+    color:#000;
+}
