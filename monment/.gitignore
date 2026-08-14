@@ -3,3 +3,5 @@ config.js
 
 # Vercel 배포 관련
 .vercel
+
+.vercel

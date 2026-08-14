@@ -1,10 +1,14 @@
-// API_KEY는 config.js에 있습니다 (index.html에서 weather.js보다 먼저 로드됨)
+// 배포(Vercel)에서는 서버리스 함수 /api/weather를 호출 → API 키가 브라우저에 노출되지 않음
+// 로컬에서 파일로 직접 열었을 때만 config.js의 API_KEY로 직접 호출 (config.js는 git 제외)
 
 function onGeoOk(position){
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     console.log("you live in" , lat , lon);
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
+    const isLocalFile = location.protocol === "file:";
+    const url = (isLocalFile && typeof API_KEY !== "undefined")
+        ? `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
+        : `/api/weather?lat=${lat}&lon=${lon}`;
     console.log(url);
     // OpenStreetMap 역지오코딩으로 한국어 지역명 가져오기 (무료, API 키 불필요)
     // zoom=16 → 동 단위까지 상세하게 받아옴
