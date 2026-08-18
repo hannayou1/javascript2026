@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h2 id="hello">안녕하세요</h2>
+    <h2 id="hi">올때매로나</h2>
+
+    <div class="alert-box" id="alertBox">
+        <span>alert 박스</span>
+        <button onclick=" alertOpen('none')" id="close">X</button>
+
+    </div>
+    <button onclick="alertOpen('flex')">버튼1</button>
+    <button onclick="alertOpen('flex')">버튼2</button>
+    
+    
+    <script>
+        document.getElementById('hello').innerHTML = "안녕";
+        // 안녕하세요 를 안녕으로 바꿔줘
+        document.getElementById('hello').style.color = "red";
+        document.getElementById('hello').style.fontSize= "30px";
+        document.getElementById('hi').innerHTML = "올때 바밤바";
+
+        function alertOpen(구멍) {
+            document.getElementById("alertBox").style.display = 구멍;
+        }
+
+        alertOpen("block"); 
+        alertOpen("none"); 
+
+
+        function plus(구멍) {
+            2 + 구멍
+        }
+
+        plus(1);
+        plus(2);
+        plus(3);
+
+
+
+
+    </script>
+</body>
+</html>
