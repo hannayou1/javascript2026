@@ -1,0 +1,7 @@
+# API 키 보관 파일 — git에 올리지 않음
+config.js
+
+# Vercel 배포 관련
+.vercel
+
+.vercel

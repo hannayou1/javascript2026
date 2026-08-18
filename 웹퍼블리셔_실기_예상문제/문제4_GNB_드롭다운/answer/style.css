@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+body {
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
+  color: #111;
+  /* fixed 헤더 높이만큼 본문 밀어내기 */
+  padding-top: 80px;
+}
+
+/* layout */
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+  transition: box-shadow 0.3s;
+}
+.header.is-scrolled {
+  border-bottom-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* gnb */
+.gnb {
+  display: flex;
+  gap: 40px;
+}
+.gnb-item {
+  position: relative;
+}
+.gnb-link {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  font-size: 16px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s;
+}
+.gnb-item:hover .gnb-link {
+  color: #0066ff;
+  border-bottom-color: #0066ff;
+}
+
+/* sub menu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  padding: 8px 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+.gnb-item.is-open .sub-menu {
+  display: block;
+}
+.sub-menu a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 15px;
+  color: #555;
+}
+.sub-menu a:hover {
+  background: #f5f7ff;
+  color: #0066ff;
+}
+
+/* login */
+.btn-login {
+  height: 36px;
+  padding: 0 20px;
+  border: 1px solid #111;
+  border-radius: 18px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.btn-login:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* dummy content (스크롤 테스트용) */
+.dummy-content {
+  height: 1500px;
+  padding-top: 60px;
+}
+.dummy-content .inner {
+  display: block;
+}
+.dummy-content h2 {
+  font-size: 24px;
+}
+.dummy-content p {
+  margin-top: 10px;
+  color: #888;
+}

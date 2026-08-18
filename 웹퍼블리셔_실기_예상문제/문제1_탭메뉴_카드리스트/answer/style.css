@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+body {
+  font-family: "Pretendard", "Malgun Gothic", sans-serif;
+  color: #111;
+}
+
+/* layout */
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.best-item {
+  padding: 60px 0;
+}
+
+/* section title */
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+.section-desc {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #888;
+  text-align: center;
+}
+
+/* tab */
+.tab-list {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+.tab-btn {
+  height: 40px;
+  padding: 0 24px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #555;
+  transition: all 0.3s;
+}
+.tab-btn:hover {
+  border-color: #111;
+  color: #111;
+}
+.tab-btn.is-active {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+/* tab panel */
+.tab-panel {
+  display: none;
+  margin-top: 40px;
+}
+.tab-panel.is-active {
+  display: block;
+}
+
+/* item card */
+.item-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.item-card {
+  /* grid 아이템의 min-width:auto 기본값 때문에
+     긴 상품명(nowrap)이 열 너비를 밀어내는 것 방지 */
+  min-width: 0;
+}
+.item-thumb {
+  height: 240px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+.item-card a:hover .item-thumb {
+  background: #e2e2e2;
+}
+.item-name {
+  display: block;
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item-price {
+  display: block;
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}

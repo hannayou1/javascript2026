@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웰컴 쿠폰 이벤트</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <section class="event-banner">
+      <div class="inner">
+        <div class="banner-box">
+          <h2 class="banner-title">신규 회원 웰컴 쿠폰</h2>
+          <p class="banner-desc">지금 가입하면 20% 할인</p>
+          <button type="button" class="btn-open-modal">쿠폰 받기</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- modal -->
+  <div class="modal-wrap">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle">
+      <h3 class="modal-title" id="modalTitle">웰컴 쿠폰 도착!</h3>
+      <button type="button" class="btn-close-modal" aria-label="닫기">&times;</button>
+      <div class="coupon-box">
+        <strong class="coupon-rate">20% OFF</strong>
+        <span class="coupon-desc">신규 회원 전용 할인 쿠폰</span>
+      </div>
+      <button type="button" class="btn-download">쿠폰 다운로드</button>
+    </div>
+  </div>
+
+  <script src="modal.js"></script>
+</body>
+</html>

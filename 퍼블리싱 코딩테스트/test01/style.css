@@ -1,32 +1,23 @@
-ul, li{
-    list-style: none;
-    padding: 0;
+ul,li{
     margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.tab_menu{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.tab-btn{
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    border-radius: 4px 4px 0 0;
-    border-bottom: 0;
+button{
+    background: none;
+    border: none;
 }
 
 .tab-btn.active{
-    background-color: turquoise;
-    border-color: turquoise;
+    background-color: lavender;
 }
 
-.tab-content{
-    border: 1px solid #ccc;
-    padding: 20px;
-    display: none;
+.tab_list{
+    display: flex;
 }
+
+.tab-content{display: none;}
 
 .tab-content.active{
     display: block;

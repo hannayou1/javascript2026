@@ -1,0 +1,8 @@
+.acc-content{
+    display: none;
+}
+
+.acc-content.on{
+    display: block;
+    background-color: lavender;
+}
