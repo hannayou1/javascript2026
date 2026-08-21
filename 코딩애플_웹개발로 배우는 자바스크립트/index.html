@@ -10,16 +10,50 @@
     <h2 id="hello">안녕하세요</h2>
     <h2 id="hi">올때매로나</h2>
 
-    <div class="alert-box" id="alertBox">
-        <span>alert 박스</span>
-        <button onclick=" alertOpen('none')" id="close">X</button>
-
+    <div class="alert-box" id="alert">
+        <span id="title">alert 박스</span>
+        <!-- <button onclick=" alertOpen('none')" id="close">X</button> -->
+        <button id="close">X</button>
     </div>
-    <button onclick="alertOpen('flex')">버튼1</button>
-    <button onclick="alertOpen('flex')">버튼2</button>
+
+    <button onclick="알림창1열기('아이디를 입력하세요')">버튼1</button>
+    <button onclick="알림창1열기('비번을 입력하세요.')">버튼2</button>
     
+
+    <h4 id="test">안녕하세요</h4>
     
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
+        // document.getElementById('test').innerHTML = '??';
+        $('#test').text('안녕');
+        $('#test').css('color', 'blue');
+        $('#test').attr('src', 'dss.jpg');
+
+    </script>
+
+    <script>
+
+        document.getElementById('test').classList.add('yellow-bg');
+        
+
+        document.getElementById('close').addEventListener('click', function(){
+            document.getElementById('alert').style.display='none';
+        });
+
+        function 알림창1열기(구멍){
+            document.getElementById('title').innerHTML= 구멍;
+            document.getElementById('alert').style.display='flex';
+        }
+
+        // function 알림창2열기(){
+        //     document.getElementById('title').innerHTML= '비번을 입력하세요.';
+        //     document.getElementById('alert').style.display='flex';
+        // }
+        
+        
+        
+        
         document.getElementById('hello').innerHTML = "안녕";
         // 안녕하세요 를 안녕으로 바꿔줘
         document.getElementById('hello').style.color = "red";
@@ -27,7 +61,7 @@
         document.getElementById('hi').innerHTML = "올때 바밤바";
 
         function alertOpen(구멍) {
-            document.getElementById("alertBox").style.display = 구멍;
+            document.getElementById("alert").style.display = 구멍;
         }
 
         alertOpen("block"); 
