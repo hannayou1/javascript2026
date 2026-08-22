@@ -11,65 +11,49 @@
     <main>
       <div class="inner">
 		<div class="wrap">
-			<h1>
-				HANNA 쇼핑몰
+			<h1 class="logo">
+				<a href="#" ><img src="img/logo.png" alt="logo"></a> 
 			</h1>
 		<div class="category_list">
 			<ul class="category_ul">
-				<li class="category_li">
-					<button>상의</button>
-				</li>
-				<li class="category_li"><button>하의</button></li>
-				<li class="category_li"><button>스커트</button></li>
-				<li class="category_li"><button>파랑</button></li>
-				<li class="category_li"><button>노랑</button></li>
-				<li class="category_li"><button>분홍</button></li>
-			</ul>
+    <!-- img 태그가 아닌 button 태그에 data 속성을 넣습니다 -->
+    <li class="category_li">
+        <button class="btn" data-key="type" data-value="tshirt">
+            <img class="imgBtn" src="img/blue_t.png" alt="tshirt">
+        </button>
+    </li>
+    <li class="category_li">
+        <button class="btn" data-key="type" data-value="pants">
+            <img class="imgBtn" src="img/blue_p.png" alt="pants">
+        </button>
+    </li>
+    <li class="category_li">
+        <button class="btn" data-key="type" data-value="skirt">
+            <img class="imgBtn" src="img/blue_s.png" alt="skirt">
+        </button>
+    </li>
+    
+    <li class="category_li">
+        <button class="btn colorBtn blue" data-key="color" data-value="blue">파랑</button>
+    </li>
+    <li class="category_li">
+        <button class="btn colorBtn yellow" data-key="color" data-value="yellow">노랑</button>
+    </li>
+    <li class="category_li">
+        <button class="btn colorBtn pink" data-key="color" data-value="pink">분홍</button>
+    </li>
+</ul>
 		</div>
 
-		<div>
+		<div class="items">
 			<ul class="product_ul">
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
-
-				<li class="product_li">
-					<span>이미지</span>
-					<strong>female, large</strong>
-				</li>
+				<!-- <li class="product_li">
+					<span>
+						<img class="item__thumbnail" src="img/pink_t.png" alt="">
+					</span>
+					<strong class="item__description">female, large</strong>
+				</li> -->
+				
 			</ul>
 		</div>
 		</div>
