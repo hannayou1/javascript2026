@@ -182,6 +182,14 @@
     
     .movie_title ul {width: auto;}
     .movie_title li {width: 25%; box-sizing: border-box; }
+    .opening {padding: 50px 0;}
+    .opening .open_box {
+        display: none;
+    }
+    .opening .desc {
+        background: none;
+        font-size: 25px;
+    }
 }
 
 @media (max-width: 768px){
@@ -244,6 +252,14 @@
     #event .row {padding: 0  8px;}
     .event {padding: 16px;}
     .event h2 {font-size: 18px; margin-bottom: 10px;}
+
+    #opening {margin: 8px 0;}
+    .opening {padding: 20px 0;}
+    .opening h2 {margin-bottom: 10px;}
+    .opening h2 .grand {background-size: 200px; background-position: 0 -70px; width: 131px; height: 16px;}
+    .opening .date {display: none;}
+    .opening .desc {font-size: 16px; font-weight: 400; padding: 0% 12% 0% 12%; background-size: 200px;}
+    
 
 }
 
