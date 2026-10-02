@@ -6,6 +6,8 @@
 #banner {position: relative;}
 #event {}
 #opening {margin: 17px 0; background: url(../img/bg01.jpg) no-repeat center top ; background-size: cover;}
+#movie {background: rgba(242, 242, 242, 242);}
+#new{}
 
 /* 가운데 영역 */
 .container {position: relative; width: 1280px; margin: 0 auto; background: rgba(0,0,0,0); }
@@ -142,11 +144,49 @@
     margin-top: -25px;
 }
 
-.opening .open_box>div p {color: #fff; font-size: 23px;
+.opening .open_box>div p {
+    color: #fff;
+    font-size: 27px;
     font-weight: 700;
-    padding: 6% 0 10% 0;}
+    padding: 6% 0 10% 0;
+}
 .opening .open_box>div p em{display: block; padding-top: 10px;}
 .opening .open_box>div p strong {display: block;}
+
+/* 새로운 영화 */
+.new {
+    position: relative;
+    padding: 100px 0;
+}
+.new h2{font-size: 30px; font-weight: 500; margin-bottom: 20px;}
+.new .new_left {
+    position: relative;
+    height: 500px;
+    background: #ccc url(../img/new01.jpg) center center;
+    background-size: cover;
+    margin-right: 423px;
+}
+.new .new_left .play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+}
+.new .new_left .play .st0 {fill: #fff; opacity: 0.3;}
+.new .new_left .play .st1 {fill: #fff;}
+.new .new_right {
+    position: absolute;
+    right: 0;
+    top: 165px;
+    width: 400px;
+    height: 500px;
+    background-color: #f0f0f0;
+}
+
+
+
 
 
 
@@ -215,6 +255,7 @@
     .event {font-size: 24px; font-weight: 700;}
     .event .event_left {width: 100%;}
     .event .event_right {display: none;}
+    #movie {background: none}
 }
 @media (max-width : 600px){
 
