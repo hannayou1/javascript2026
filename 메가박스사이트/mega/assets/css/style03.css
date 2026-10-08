@@ -262,6 +262,7 @@
 .help {overflow: hidden; padding-bottom: 200px;}
 .help article{float: left; width: 32%; margin-right: 2%; height: 350px;}
 .help article > div {border: 1px solid #dbdbdb; height: 350px;}
+.help article.help_box3 > div {border: 0;}
 .help article.help_box3{margin-right: 0;}
 .help article h3{font-size: 30px; font-weight: 500; margin-bottom: 20px;}
 
@@ -281,15 +282,21 @@
 
 /* 할인카드 */
 .card {padding: 17px;}
-.card ul{}
 .card ul li{position: relative; min-height: 102px;  border: 1px solid #d7d7d7; padding: 17px; margin-bottom: 15px; box-sizing: border-box;}
 .card ul li span{position: absolute; left: 17px; top: 17px;}
 .card ul li span img{width: 105px;}
 .card ul li strong{display: block; font-size: 18px; padding-left: 120px; color: #777;}
 .card ul li em{display: block; font-size: 14px; padding-left: 120px; color: #777; font-weight: 400;}
 
-
-
+/* 고객센터 */
+.service ul {overflow: hidden;}
+.service li{float: left; width: 50%; height: 193px; box-sizing: border-box; border: 1px solid #d7d7d7 ; text-align:  center;}
+.service li a span{display: block; width: 120px; height: 120px; margin: 20px auto 0 auto; overflow: hidden;}
+.service li a span svg {border: 0;}
+.service li a strong{color: #666; font-size: 18px; font-weight: 500;}
+.service li:nth-child(1) {border-right: 0; border-bottom: 0;}
+.service li:nth-child(2) {border-bottom: 0;}
+.service li:nth-child(3) {border-right: 0;}
 
 
 
