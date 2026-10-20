@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로또 번호 추천</title>
+
+  <style>
+  .numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 36px 0;
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.game-label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #737789;
+  white-space: nowrap;
+}
+
+.game .ball {
+  width: clamp(30px, 8vw, 52px);
+  font-size: clamp(16px, 4vw, 22px);
+}
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <span class="badge">LUCKY PICK</span>
+    <h1>🍀 로또 번호 추천</h1>
+    <p class="description">
+      오늘의 행운 번호는 무엇일까요?<br />
+      버튼을 눌러 번호 6개를 뽑아보세요.
+    </p>
+
+<div
+  class="numbers"
+  id="numbers"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+  aria-label="추천 번호 5게임"
+>
+  <p class="description">버튼을 누르면 5게임이 표시됩니다.</p>
+</div>
+
+    <button type="button" id="recommendBtn">
+      행운의 번호 뽑기
+    </button>
+
+    <p class="notice">
+      1~45 중 중복 없는 번호 6개를 무작위로 추천합니다.<br />
+      재미로 이용해 주세요. 당첨을 보장하지 않습니다.
+    </p>
+  </main>
+
+<script>
+  const numbersElement = document.getElementById("numbers");
+  const recommendButton = document.getElementById("recommendBtn");
+
+  function getColor(number) {
+    if (number <= 10) return "yellow";
+    if (number <= 20) return "blue";
+    if (number <= 30) return "red";
+    if (number <= 40) return "gray";
+    return "green";
+  }
+
+  // 중복 없는 번호 6개를 생성합니다.
+  function createNumbers() {
+    const selected = new Set();
+
+    while (selected.size < 6) {
+      selected.add(Math.floor(Math.random() * 45) + 1);
+    }
+
+    return [...selected].sort((a, b) => a - b);
+  }
+
+  function recommendNumbers() {
+    const fragment = document.createDocumentFragment();
+
+    // 번호 조합을 5게임 생성합니다.
+    for (let i = 0; i < 5; i++) {
+      const numbers = createNumbers();
+      const game = document.createElement("div");
+      game.className = "game";
+
+      const label = document.createElement("span");
+      label.className = "game-label";
+      label.textContent = `${i + 1}게임`;
+      game.appendChild(label);
+
+      numbers.forEach((number) => {
+        const ball = document.createElement("span");
+        ball.className = `ball ${getColor(number)}`;
+        ball.textContent = number;
+        game.appendChild(ball);
+      });
+
+      fragment.appendChild(game);
+    }
+
+    numbersElement.replaceChildren(fragment);
+    recommendButton.textContent = "5게임 다시 뽑기 ↻";
+  }
+
+  recommendButton.addEventListener("click", recommendNumbers);
+</script>
+</body>
+</html>

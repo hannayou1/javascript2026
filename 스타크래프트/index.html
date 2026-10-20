@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link
+    rel="stylesheet"
+    href="style.css"/>
+    <title>스타크래프트</title>
+</head>
+<body>
+    <img id="wraith" class="animate__animated animate__bounce" src="banner01.jpg" alt="레이스">
+    <img id="cloaking" onclick="hide()" src="apple.png" alt="">
+
+    <script>
+        function hide(){
+            let status = document.getElementById("wraith").style.visibility;
+
+            if(status == ''){
+                document.getElementById("wraith").style.visibility = "hidden";
+            } else if(status == 'hidden'){
+                  document.getElementById("wraith").style.visibility = "";
+            }
+
+            // var auido = new Audio('https://cdn.freesound.org/previews/874/874887_10996917-lq.mp3');
+            // auido.play();
+        }
+    </script>
+</body>
+</html>
